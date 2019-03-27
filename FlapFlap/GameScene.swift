@@ -44,7 +44,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var died = Bool()
     // Restart button
     var restartButton = SKSpriteNode()
-    
+    var impulse = 300
+    var pipeSpace: CGFloat = 900
+    var dRadius: CGFloat = 4.0
     
     // This is a common practice. The name "PysicsCategory" seems weird to me...
     struct PhysicsCategory {
@@ -69,8 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Scene setup
     func createScene() {
-        restartNode.removeFromParent()
-        
+       // restartNode.removeFromParent()
         
         
         // GameScene is now a SKPhysicContactDelegate it will handle contact events.
@@ -90,7 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var textures: [SKTexture] = []
         for i in 0 ... 7 {
-            textures.append(SKTexture(imageNamed: "frame_\(i)_delay-0.1s"))
+            textures.append(SKTexture(imageNamed: "bird\(i)"))
         }
         let birdAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
         
@@ -131,14 +132,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // BIRD
         // Add the bird image
-        bird = SKSpriteNode(imageNamed: "frame_1_delay-0.1s")
+        bird = SKSpriteNode(imageNamed: "bird0")
         // Scale the bird image
-        bird.size = CGSize(width: 150, height: 150)
+        bird.size = CGSize(width: 225, height: 225)
         // Set the bird position
-        bird.position = CGPoint(x: self.frame.width / 2 - bird.frame.width,
+        bird.position = CGPoint(x: self.frame.width * 0.22,
                                 y: self.frame.height / 2)
+        
+        
         // Set the radius of physic body to half the length of the height
-        bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.frame.height / 2)
+        bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.frame.height / dRadius)
+        //bird.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 110, height: 100))
         bird.physicsBody?.categoryBitMask = PhysicsCategory.bird
         // The bird needs to know if it collided with the wall or the ground
         bird.physicsBody?.collisionBitMask = PhysicsCategory.ground | PhysicsCategory.wall
@@ -153,7 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bird.run(SKAction.repeatForever(birdAnimation))
         
         // BACKGROUND
-        background = SKSpriteNode(imageNamed: "frame_00_delay-0.04s" )
+        background = SKSpriteNode(imageNamed: "bird0" )
         background.size = CGSize(width: self.frame.width, height: self.frame.height * 1.5)
         background.position = CGPoint(x: self.frame.width / 2,
                                       y: self.frame.height / 2)
@@ -249,17 +253,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Position the walls where they are off scene and move in.
         topWall.position = CGPoint(x: self.frame.width,
-                                   y: self.frame.height / 2 + 800)
+                                   y: self.frame.height / 2 + pipeSpace)
         
         // Playing around with the vertical space between the top and bottom walls...
         bottomWall.position = CGPoint(x: self.frame.width,
-                                      y: self.frame.height / 2 - 800)
+                                      y: self.frame.height / 2 - pipeSpace)
        // topWall.zRotation = .pi
-        topWall.xScale = 0.6
-        topWall.yScale = 1.5
+        topWall.xScale = 0.3
+        topWall.yScale = 1.7
 //        bottomWall.setScale(0.85)
-        bottomWall.xScale = 0.6
-        bottomWall.yScale = 1.5
+        bottomWall.xScale = 0.3
+        bottomWall.yScale = 1.7
         
         // CHANGE MAYBE: This is super repettitive maybe I could make a function to reduce
         // the repetitiveness...
@@ -285,7 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // SCORE NODE
         let scoreNode = SKSpriteNode()
-        scoreNode.size = CGSize(width: 5, height: 300)
+        scoreNode.size = CGSize(width: 0.1, height: pipeSpace * 0.75)
         scoreNode.position = CGPoint(x: self.frame.width, y: self.frame.height / 2)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
@@ -296,7 +300,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // The scoreNode should know when the bird has come into contact with. That way
         // the score can be updated in the game
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCategory.bird
-        //scoreNode.color = SKColor.blue
+        // TURN OFF -- COMMENT THIS LINE OUT...
+        scoreNode.color = SKColor.blue
         
         // Adding score to wallPair
         wallPair.addChild(scoreNode)
@@ -346,13 +351,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemove = SKAction.sequence([movePipes, removePipes])
             bird.physicsBody?.velocity = CGVector(dx:0, dy:0)
             // Impulses are used for one-time changes to a body's velocity
-            bird.physicsBody?.applyImpulse(CGVector(dx:0, dy:250))
+            bird.physicsBody?.applyImpulse(CGVector(dx:0, dy: impulse))
             
         } else {
             if !died {
                 bird.physicsBody?.velocity = CGVector(dx:0, dy:0)
                 // Impulses are used for one-time changes to a body's velocity
-                bird.physicsBody?.applyImpulse(CGVector(dx:0, dy:250))
+                bird.physicsBody?.applyImpulse(CGVector(dx:0, dy: impulse))
             }
         }
         

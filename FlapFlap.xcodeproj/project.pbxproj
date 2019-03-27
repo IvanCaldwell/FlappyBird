@@ -19,6 +19,7 @@
 		2C4FC1F822436B7C001A3327 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4FC1F722436B7B001A3327 /* BackgroundMusic.mp3 */; };
 		2C4FC1FB22436F10001A3327 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4FC1FA22436F0F001A3327 /* AVFoundation.framework */; };
 		2C4FC1FD2244C091001A3327 /* FlappyBird.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C4FC1FC2244BEEB001A3327 /* FlappyBird.ttf */; };
+		2CDD654422492B9400B0A2A2 /* ElevatorMusicEdited.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD654322492B9200B0A2A2 /* ElevatorMusicEdited.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2C4FC1F722436B7B001A3327 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundMusic.mp3; sourceTree = "<group>"; };
 		2C4FC1FA22436F0F001A3327 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2C4FC1FC2244BEEB001A3327 /* FlappyBird.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FlappyBird.ttf; sourceTree = "<group>"; };
+		2CDD654322492B9200B0A2A2 /* ElevatorMusicEdited.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ElevatorMusicEdited.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				2C4FC1EB22416D45001A3327 /* LaunchScreen.storyboard */,
 				2C4FC1EE22416D45001A3327 /* Info.plist */,
 				2C4FC1FC2244BEEB001A3327 /* FlappyBird.ttf */,
+				2CDD654322492B9200B0A2A2 /* ElevatorMusicEdited.wav */,
 				2C4FC1F722436B7B001A3327 /* BackgroundMusic.mp3 */,
 			);
 			path = FlapFlap;
@@ -160,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDD654422492B9400B0A2A2 /* ElevatorMusicEdited.wav in Resources */,
 				2C4FC1E822416D36001A3327 /* Main.storyboard in Resources */,
 				2C4FC1DF22416D36001A3327 /* GameScene.sks in Resources */,
 				2C4FC1ED22416D45001A3327 /* LaunchScreen.storyboard in Resources */,
@@ -327,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L43RRC3V4Y;
 				INFOPLIST_FILE = FlapFlap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -344,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L43RRC3V4Y;
 				INFOPLIST_FILE = FlapFlap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

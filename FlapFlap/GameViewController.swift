@@ -14,7 +14,8 @@ import AVFoundation
 
 class GameViewController: UIViewController {
 
-    var backgroundAudio = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "BackgroundMusic", ofType: "mp3")!))
+    
+    var backgroundAudio = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ElevatorMusicEdited", ofType: "wav")!))
     // Call can throw, but errors cannot be thrown out of a property initializer (ENGLISH PLEASE!) I
     // resolve this by putting try in front of call.
     
@@ -23,6 +24,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
+            // This will allow me tho see the physics body. pretty self explanatory
+            // TURN OFF -- COMMENT THIS LINE OUT...
+            view.showsPhysics = true
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 backgroundAudio.play()
